@@ -12,15 +12,28 @@ namespace TextFilter.Filters
             foreach (var wordToFilter in wordsToFilter)
             {
                 var wordLength = wordToFilter.Length;
-                
-                if (wordLength % 2 == 0 && ShouldFilterWordEvenLength(wordToFilter, wordLength))
-                {
-                    yield return wordToFilter;
-                }
+                var wordToLower = wordToFilter.ToLower();
 
-                if (wordLength % 2 == 1 && ShouldFilterWordOddLength(wordToFilter, wordLength))
+                switch (wordLength % 2)
                 {
-                    yield return wordToFilter;
+                    case 0:
+                    {
+                        if (!ShouldFilterWordEvenLength(wordToLower, wordLength))
+                        {
+                            yield return wordToFilter;
+                        }
+
+                        break;
+                    }
+                    case 1:
+                    {
+                        if (!ShouldFilterWordOddLength(wordToLower, wordLength))
+                        {
+                            yield return wordToFilter;
+                        }
+
+                        break;
+                    }
                 }
             }
         }
@@ -28,7 +41,8 @@ namespace TextFilter.Filters
         private bool ShouldFilterWordEvenLength(string word, int wordLength)
         {
             var charPosition = (wordLength/2) - 1;
-            var substring = word.Substring(charPosition, charPosition + 1);
+
+            var substring = word.Substring(charPosition, 2);
 
             return substring.Any(_vowelList.Contains);
         }

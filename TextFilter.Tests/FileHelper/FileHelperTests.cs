@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace TextFilter.Tests
+namespace TextFilter.Tests.FileHelper
 {
     [TestFixture]
     public class FileHelperTests
@@ -18,13 +18,13 @@ namespace TextFilter.Tests
         [Test]
         public void Should_GetFileLines_DoesNotThrow()
         {
-            Assert.DoesNotThrow(() => FileHelper.FileHelper.GetFileLines(_filePath));
+            Assert.DoesNotThrow(() => TextFilter.FileHelper.FileHelper.GetFileLines(_filePath));
         }
         
         [Test]
         public void Should_GetFileLines_HasAny()
         {
-            var lines = FileHelper.FileHelper.GetFileLines(_filePath);
+            var lines = TextFilter.FileHelper.FileHelper.GetFileLines(_filePath);
             
             Assert.That(lines.Any());
         }
@@ -45,8 +45,8 @@ namespace TextFilter.Tests
 
         private IEnumerable<string> GetWordsList()
         {
-            var lines = FileHelper.FileHelper.GetFileLines(_filePath);
-            return FileHelper.FileHelper.GetWordsList(lines);
+            var lines = TextFilter.FileHelper.FileHelper.GetFileLines(_filePath);
+            return TextFilter.FileHelper.FileHelper.GetWordsList(lines);
         }
     }
 }

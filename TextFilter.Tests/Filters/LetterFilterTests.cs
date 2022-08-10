@@ -2,17 +2,17 @@
 using NUnit.Framework;
 using TextFilter.Filters;
 
-namespace TextFilter.Tests
+namespace TextFilter.Tests.Filters
 {
     [TestFixture]
-    public class WordLengthFilterTests : AbstractFilterTests
+    public class LetterFilterTests : AbstractFilterTests
     {
-        private const int MinLengthToKeep = 3;
+        private const char LetterFilteredOut = 't';
 
         [OneTimeSetUp]
         public void Setup()
         {
-            Filter = new WordLengthFilter(MinLengthToKeep);
+            Filter = new LetterFilter(LetterFilteredOut);
         }
 
         [Test]
@@ -22,11 +22,11 @@ namespace TextFilter.Tests
         }
 
         [Test]
-        public void Should_Filter_Returns_5()
+        public void Should_Filter_Returns_6()
         {
             var wordsLeft = Filter.Filter(SampleWords);
-            
-            Assert.That(wordsLeft.Count(), Is.EqualTo(5));
+
+            Assert.That(wordsLeft.Count(), Is.EqualTo(6));
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace TextFilter.Tests
 
             foreach (var wordLeft in wordsLeft)
             {
-                Assert.That(wordLeft.Length >= 3);
+                Assert.That(!wordLeft.Contains(LetterFilteredOut));
             }
         }
     }

@@ -14,7 +14,7 @@ namespace TextFilter.Filters
 
         public IEnumerable<string> Filter(IEnumerable<string> wordsToFilter)
         {
-            return wordsToFilter.Where(word => !word.Contains(_letterToFilter));
+            return wordsToFilter.Where(word => !word.ToLower().Contains(_letterToFilter));
         }
     }
 }
