@@ -27,7 +27,7 @@ namespace TextFilter.FileHelper
             try
             {
                 //this pattern will look up all groups that are not words or numbers. For the purpose of this exercise I do not consider cases like email addresses
-                var regexPattern = @"[^\w]+";
+                const string regexPattern = @"[^\w]+";
                 var words = lines.SelectMany(x => Regex.Split(x, regexPattern));
 
                 return words.Where(x => x.Length > 0);

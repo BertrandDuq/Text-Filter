@@ -51,8 +51,8 @@ namespace TextFilter.Filters
         {
             var charPosition = wordLength == 1 ?  
                 0 : 
-                (wordLength / 2);
-            
+                (wordLength / 2); //dividing integer rounds to the lower integer value. ie 5/2 = 2, and the index 2 is actually the 3rd letter so we're good
+
             return _vowelList.Contains(word[charPosition]);
         }
     }
