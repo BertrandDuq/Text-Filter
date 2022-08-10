@@ -14,8 +14,6 @@ namespace TextFilter.FileHelper
             {
                 var lines = File.ReadLines(filePath);
 
-                Console.WriteLine($"Finished reading the file: {filePath}");
-
                 return lines;
             }
             catch (Exception e)
